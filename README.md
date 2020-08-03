@@ -12,10 +12,11 @@ Ying Wang, [Zezhou Sun](https://github.com/SunZezhou), Cheng-Zhong Xu, Sanjay Sa
 
 ## Usage
 #### 1. Requirement
+we tested on Ubuntu 18.04.
 ```
-1. cmake
-2. PCL
-3. OpenCV
+1. cmake 3.10.2
+2. PCL 1.8
+3. OpenCV 3.2.0
 ```
 
 #### 2. Build
