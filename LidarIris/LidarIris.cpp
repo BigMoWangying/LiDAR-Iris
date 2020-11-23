@@ -210,7 +210,7 @@ void LidarIris::GetHammingDistance(const cv::Mat1b &T1, const cv::Mat1b &M1, con
         else
         {
             float currentDis = bitsDiff / (float)totalBits;
-            if (currentDis < dis || isnan(dis))
+            if (currentDis < dis || std::isnan(dis))
             {
                 dis = currentDis;
                 bias = shift;
@@ -227,8 +227,12 @@ inline cv::Mat LidarIris::circRowShift(const cv::Mat &src, int shift_m_rows)
     shift_m_rows %= src.rows;
     int m = shift_m_rows > 0 ? shift_m_rows : src.rows + shift_m_rows;
     cv::Mat dst(src.size(), src.type());
-    src(cv::Range(src.rows - m, src.rows), cv::Range::all()).copyTo(dst(cv::Range(0, m), cv::Range::all()));
-    src(cv::Range(0, src.rows - m), cv::Range::all()).copyTo(dst(cv::Range(m, src.rows), cv::Range::all()));
+    if(m!=0){
+        src(cv::Range(src.rows - m, src.rows), cv::Range::all()).copyTo(dst(cv::Range(0, m), cv::Range::all()));
+    }
+    if(m!=src.rows){
+        src(cv::Range(0, src.rows - m), cv::Range::all()).copyTo(dst(cv::Range(m, src.rows), cv::Range::all()));
+    }
     return dst;
 }
 
@@ -239,8 +243,12 @@ inline cv::Mat LidarIris::circColShift(const cv::Mat &src, int shift_n_cols)
     shift_n_cols %= src.cols;
     int n = shift_n_cols > 0 ? shift_n_cols : src.cols + shift_n_cols;
     cv::Mat dst(src.size(), src.type());
-    src(cv::Range::all(), cv::Range(src.cols - n, src.cols)).copyTo(dst(cv::Range::all(), cv::Range(0, n)));
-    src(cv::Range::all(), cv::Range(0, src.cols - n)).copyTo(dst(cv::Range::all(), cv::Range(n, src.cols)));
+    if(n!=0){
+        src(cv::Range::all(), cv::Range(src.cols - n, src.cols)).copyTo(dst(cv::Range::all(), cv::Range(0, n)));
+    }
+    if(n!=src.cols){
+        src(cv::Range::all(), cv::Range(0, src.cols - n)).copyTo(dst(cv::Range::all(), cv::Range(n, src.cols)));
+    }
     return dst;
 }
 
