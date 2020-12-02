@@ -1,6 +1,7 @@
 ﻿cmake_minimum_required (VERSION 3.8)
 
 SET(CMAKE_BUILD_TYPE Release)
+set(CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "/usr/lib/x86_64-linux-gnu/cmake")
 set(OpenCV_DIR "/usr/local/share/OpenCV")
