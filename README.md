@@ -1,22 +1,21 @@
 # LiDAR Iris for Loop-Closure Detection
 
-**This repository accompanies our IROS 2020 paper [_LiDAR Iris for Loop-Closure Detection_](./iros2020.pdf).** In this paper, a global descriptor for a LiDAR point cloud, called LiDAR Iris, is proposed for fast and accurate loop-closure detection. A binary signature image can be obtained for each point cloud after several LoG-Gabor filtering and thresholding operations on the LiDAR-Iris image representation. Given two point clouds, their similarities can be calculated as the Hamming distance of two corresponding binary signature images extracted from the two point clouds, respectively. Our LiDAR-Iris method can achieve a pose-invariant loop-closure detection at a descriptor level with the Fourier transform of the LiDAR-Iris representation if assuming a 3D (x,y,yaw) pose space, although our method can generally be applied to a 6D pose space by re-aligning point clouds with an additional IMU sensor. Experimental results on five road-scene sequences demonstrate its excellent performance in loop-closure detection.
+Our reimplemented c++ code for our IROS2020 paper "LiDAR Iris for Loop-Closure Detection".
 |||
 |--|--|
 |![](./img/iris_1.png) | ![](./img/lidarIris.png)|
 |||
 ## Publication
 
-Ying Wang, [Zezhou Sun](https://github.com/SunZezhou), Cheng-Zhong Xu, Sanjay Sarma, Jian Yang, and [Hui Kong](https://sites.google.com/view/huikonglab/home), **LiDAR Iris for Loop-Closure Detection**, _IEEE International Conference on Intelligent Robotics and Systems (IROS) 2020 (**oral presentation**)_. [[PDF]](./iros2020.pdf) [[CODE]](https://github.com/BigMoWangying/LiDAR-Iris)
+Ying Wang, Zezhou Sun, Cheng-Zhong Xu, Sanjay Sarma, Jian Yang, and Hui Kong, **LiDAR Iris for Loop-Closure Detection**, _IEEE International Conference on Intelligent Robotics and Systems (IROS) 2020_. 
 
 
 ## Usage
 #### 1. Requirement
-we tested on Ubuntu 18.04.
 ```
-1. cmake 3.10.2
-2. PCL 1.8
-3. OpenCV 3.2.0
+1. cmake
+2. PCL
+3. OpenCV
 ```
 
 #### 2. Build
@@ -30,6 +29,12 @@ make
 
 #### 3. Run
 ```
-./demo ../data/64line_1.pcd ../data/64line_2.pcd
+./demo
+python draw.py
 ```
-![](./img/out.png)
+|||
+|--|--|
+|![](./img/00pr.png) | ![](./img/00traj.png)|
+|![](./img/05pr.png) | ![](./img/05traj.png)|
+|![](./img/08pr.png) | ![](./img/08traj.png)|
+|||
